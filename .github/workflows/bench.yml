@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check Docker Compose version
-        run: docker-compose --version
+        run: docker compose --version
 
       - uses: actions/checkout@v4
 
