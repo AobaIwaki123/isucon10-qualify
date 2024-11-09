@@ -19,7 +19,17 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: '^1.23.3' # The Go version to download (if necessary) and use.
-      
+
+      - name: Start Docker
+        run: |
+          brew install --cask docker  # Dockerをインストール（macOSの場合）
+          open /Applications/Docker.app
+          # Dockerの起動待機
+          while ! docker system info > /dev/null 2>&1; do
+            echo "Waiting for Docker to start..."
+            sleep 5
+          done
+          
       - name: Initialize Data
         run: |
           cd initial-data
