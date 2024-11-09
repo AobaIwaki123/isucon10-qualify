@@ -9,6 +9,8 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -33,8 +35,10 @@ jobs:
           go install github.com/orisano/wayt@latest
           echo "::endgroup::"
           
+          echo "::group:: make"
           make
-          
+          echo "::endgroup::"
+
           cd ..
       
       - name: Webapp
