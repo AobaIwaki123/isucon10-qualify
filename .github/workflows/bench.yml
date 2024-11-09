@@ -46,11 +46,19 @@ jobs:
       - name: Webapp
         run: |
           cd webapp
+
+          echo "::group:: make"
           make api-server/go
+          echo "::endgroup::"
+
           cd ..
 
       - name: Bench
         run: |
           cd bench
+
+          echo "::group:: make"
           make
+          echo "::endgroup::"
+          
           ./bench
