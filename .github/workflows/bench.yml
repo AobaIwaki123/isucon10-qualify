@@ -22,14 +22,13 @@ jobs:
 
       - name: Start Docker
         run: |
-          brew install --cask docker  # Dockerをインストール（macOSの場合）
+          brew install --cask docker
           open /Applications/Docker.app
-          # Dockerの起動待機
           while ! docker system info > /dev/null 2>&1; do
             echo "Waiting for Docker to start..."
             sleep 5
           done
-          
+
       - name: Initialize Data
         run: |
           cd initial-data
