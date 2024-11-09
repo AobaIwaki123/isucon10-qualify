@@ -6,7 +6,7 @@ defaults:
     shell: bash
 jobs:
   bench:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Check Docker Compose version
         run: docker compose --version
