@@ -1,0 +1,40 @@
+name: Bench
+run-name: Bench
+on: push
+default:
+  shell: bash
+jobs:
+  bench:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '^1.23.3' # The Go version to download (if necessary) and use.
+      
+      - name: Initialize Data
+        run: |
+          cd initial-data
+          pip install -r requirements.txt
+          go install github.com/orisano/wayt@latest
+          make
+          cd ..
+      
+      - name: Webapp
+        run: |
+          cd webapp
+          make api-server/go
+          cd ..
+
+      - name: Bench
+        run: |
+          cd bench
+          make
+          ./bench
