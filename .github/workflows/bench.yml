@@ -1,8 +1,9 @@
 name: Bench
 run-name: Bench
 on: push
-default:
-  shell: bash
+defaults:
+  run:
+    shell: bash
 jobs:
   bench:
     runs-on: macos-latest
