@@ -6,8 +6,11 @@ defaults:
     shell: bash
 jobs:
   bench:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
+      - name: Check Docker Compose version
+        run: docker-compose --version
+
       - uses: actions/checkout@v4
 
       - name: Set up Python
@@ -20,8 +23,6 @@ jobs:
         with:
           go-version: '^1.23.2' # The Go version to download (if necessary) and use.
           
-      - name: Check Docker Compose version
-        run: docker-compose --version
 
       - name: Initialize Data
         run: |
